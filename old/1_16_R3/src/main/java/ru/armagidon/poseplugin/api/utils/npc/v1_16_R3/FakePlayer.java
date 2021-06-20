@@ -1,4 +1,4 @@
-package ru.armagidon.poseplugin.api.utils.npc.v1_16_R3;
+package ru.armagidon.poseplugin.api.utils.npc.v1_17_R1;
 
 import com.mojang.authlib.GameProfile;
 import lombok.Getter;

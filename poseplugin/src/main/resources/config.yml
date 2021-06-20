@@ -1,0 +1,48 @@
+locale: en
+check-for-updates: true
+x-mode: true
+crawl:
+  static: false
+  stand-up-when-damaged: true
+  enabled: true
+lay:
+  view-distance: 20
+  stand-up-when-damaged: true
+  head-rotation: true
+  swing-animation: true
+  update-equipment: true
+  prevent-use-when-invisible: true
+  update-overlays: true
+  sync-equipment: true
+  sync-overlays: true
+  deep-dive: false
+sit:
+  stand-up-when-damaged: true
+wave:
+  enabled: true
+  stand-up-when-damaged: true
+  disable-when-shift: true
+  deep-dive: false
+point:
+  enabled: true
+  stand-up-when-damaged: true
+  disable-when-shift: true
+  deep-dive: false
+handshake:
+  enabled: true
+  stand-up-when-damaged: true
+  disable-when-shift: true
+  deep-dive: false
+clap:
+  enabled: true
+  stand-up-when-damaged: true
+  disable-when-shift: true
+  deep-dive: false
+pray:
+  enabled: true
+  step: 3.0
+spinjitsu:
+  enabled: true
+  stand-up-when-damaged: true
+  disable-when-shift: true
+  deep-dive: false

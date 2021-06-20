@@ -1,0 +1,48 @@
+pose-not-support-version: "§cThis pose is for newer versions of Minecraft"
+in-air: "§cYou can't do this in air"
+crawl:
+  play: "§bYou're crawling"
+  damage: "&cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"
+lay:
+  play: "§bYou've laid down"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  prevent-use-when-invisible: "§cYou can't lay while you are invisible"
+  prevent-use-invisibility-when-use: "§cDon't drink invisibility potions in horizontal position"
+  stop: "§aYou stood up"
+sit:
+  play: "§bYou've sat down"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"
+wave:
+  play: "§bYou started to wave your hand"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  handmode-change: "§aYou've changed your hand to wave with"
+  stop: "§aYou've stopped waving"
+  usage: "§9/wave [right/left/off]"
+point:
+  play: "§bYou started to point with your finger"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  handmode-change: "§aYou've changed your hand to point with"
+  stop: "§aYou've stopped pointing"
+  usage: "§9/point [right/left/off]"
+handshake:
+  play: "§bYou started handshaking with your hand."
+  damage: "§cYou suddenly stood up, because you got damaged"
+  handmode-change: "§aYou've changed your hand to handshake with"
+  stop: "§aYou've stopped your handshake"
+  usage: "§9/handshake [right/left/off]"
+clap:
+  play: "§bYou started clapping with your hands."
+  damage: "§cYou suddenly stood up, because you got damaged"
+  handmode-change: "§aYou've changed your hand to clap with"
+  stop: "§aYou've stopped clapping"
+  usage: "§9/clap [right/left/off]"
+pray:
+  play: "§bYou've started praying"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"
+spinjitsu:
+  play: "§bYou've started spinjitsu"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"

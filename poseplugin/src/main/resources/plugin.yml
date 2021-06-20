@@ -1,0 +1,26 @@
+name: PosePlugin
+version: plugin-version
+main: ru.armagidon.poseplugin.PosePlugin
+api-version: "1.15"
+authors: [Armagidon_MC]
+description: Give you opportunity to change your pose
+softdepend:  [ProtocolLib]
+permissions:
+  poseplugin.admin:
+    default: op
+  poseplugin.command.*:
+    description: Gives access to all plugin commands
+    default: op
+    children:
+      poseplugin.command.sit: true
+      poseplugin.command.lay: true
+      poseplugin.command.swim: true
+  poseplugin.command.sit:
+    description: Gives all access to /sit commands
+    default: true
+  poseplugin.command.lay:
+    description: Gives all access to /lay commands
+    default: true
+  poseplugin.command.swim:
+    description: Gives all access to /swim commands
+    default: true

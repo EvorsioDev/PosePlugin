@@ -1,4 +1,4 @@
-package ru.armagidon.poseplugin.api.utils.playerhider.v1_16_R3;
+package ru.armagidon.poseplugin.api.utils.playerhider.v1_17_R1;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

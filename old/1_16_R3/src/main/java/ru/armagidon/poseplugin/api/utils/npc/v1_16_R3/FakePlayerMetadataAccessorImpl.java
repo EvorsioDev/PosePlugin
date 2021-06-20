@@ -1,4 +1,4 @@
-package ru.armagidon.poseplugin.api.utils.npc.v1_16_R3;
+package ru.armagidon.poseplugin.api.utils.npc.v1_17_R1;
 
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Location;

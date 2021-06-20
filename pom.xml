@@ -5,24 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.armagidon</groupId>
-    <artifactId>poseplugin</artifactId>
-    <version>parent</version>
+    <artifactId>PosePlugin</artifactId>
+    <version>4.0-beta-1</version>
     <modules>
-        <module>plugin</module>
-        <module>dist</module>
-        <module>api</module>
-        <module>ItemUtils</module>
+        <module>poseplugin</module>
+        <module>poseplugin-api</module>
+        <module>poseplugin-1_17</module>
+        <module>poseplugin-protocolized</module>
     </modules>
+
     <packaging>pom</packaging>
+
     <name>PosePlugin</name>
     <description>Give you opportunity to change your pose</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <build.number>3</build.number>
-        <build.prefix>-beta</build.prefix>
-        <build.version>3.1</build.version>
-        <plugin.version>${build.version}${build.prefix}</plugin.version>
     </properties>
     <repositories>
         <repository>
@@ -48,7 +46,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -66,21 +64,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.18.2-GA</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations-java5</artifactId>
             <version>19.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>4.6.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -95,19 +81,37 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.26.0-GA</version>
+            <optional>false</optional> <!-- case: when not actually scanning with javassist or if using {@link Reflections.collect()} -->
+        </dependency>
     </dependencies>
 
     <build>
-        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
