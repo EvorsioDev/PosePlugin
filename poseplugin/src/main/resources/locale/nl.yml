@@ -1,5 +1,6 @@
+pose-not-support-version: "§cThis pose is for newer versions of Minecraft" # Needs changes
 in-air: "§cJe kan dit niet doen in de lucht!"
-swim:
+crawl:
   play: "§bJe bent aan eht zwemmen"
   damage: "&cJe stond ineens op omdat je geraakt werd"
   stop: "§aJe bent recht gaan staan"
@@ -31,3 +32,17 @@ handshake:
   handmode-change: "§aJe bent gewisseld van hand"
   stop: "§aJe bent gestopt met je hand te schudden"
   usage: "§9/handshake [right/left/off]"
+clap: # Needs changes
+  play: "§bYou started clapping with your hands."
+  damage: "§cYou suddenly stood up, because you got damaged"
+  handmode-change: "§aYou've changed your hand to clap with"
+  stop: "§aYou've stopped clapping"
+  usage: "§9/clap [right/left/off]"
+pray: # Needs changes
+  play: "§bYou've started praying"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"
+spinjitsu: # Needs changes
+  play: "§bYou've started spinjitsu"
+  damage: "§cYou suddenly stood up, because you got damaged"
+  stop: "§aYou stood up"  
