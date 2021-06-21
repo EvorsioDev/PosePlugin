@@ -11,7 +11,7 @@
 Tested on: <a href="https://getbukkit.org/">Spigot</a>, <a href="https://github.com/PaperMC/Paper">Paper</a>, <a href="https://github.com/Tuinity/Tuinity">Tuinity</a>,
 <a href="https://github.com/pl3xgaming/Purpur">Purpur</a>, <a href="https://github.com/TECHNOVE/Airplane">Airplane</a>.
 
-<h3>⚠️ Pose /point has been working exclusively since version 1.17.x</h3>
+<h3>⚠️ Pose `/point` has been working exclusively since version 1.17+</h3>
 
 ## Video review about the plugin ##
 In English language
