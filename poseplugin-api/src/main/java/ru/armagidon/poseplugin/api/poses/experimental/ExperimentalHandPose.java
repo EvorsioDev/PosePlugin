@@ -28,7 +28,6 @@ public abstract class ExperimentalHandPose extends SeatRequiringPose
 
     private final ItemStack handItem;
     private final FakePlayer<?> npc;
-    private final ArmorStandSeat seat;
     private final Location to;
 
     public ExperimentalHandPose(Player target, Material type) {
@@ -42,8 +41,6 @@ public abstract class ExperimentalHandPose extends SeatRequiringPose
         getProperties().register();
 
         this.to = target.getLocation().clone();
-        this.seat = new ArmorStandSeat(target);
-        this.seat.addSeatObserver(this);
     }
 
     @Override

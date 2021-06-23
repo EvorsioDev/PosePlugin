@@ -29,14 +29,12 @@ public class SpinJitsuPose extends SeatRequiringPose
 
     private final FakePlayer<?> npc;
     private final Location to;
-    private final ArmorStandSeat seat;
 
     public SpinJitsuPose(Player target) {
         super(target);
         this.npc = ToolFactory.create(FakePlayer.class,new Class[]{Player.class, Pose.class}, target, Pose.SPIN_ATTACK);
         getProperties().registerProperty(EnumPoseOption.DEEP_DIVE.mapper(), new Property<>(npc::isDeepDiveEnabled, npc::setDeepDiveEnabled)).register();
         this.to = target.getLocation().clone();
-        this.seat = new ArmorStandSeat(target);
     }
 
     @Override
@@ -46,9 +44,7 @@ public class SpinJitsuPose extends SeatRequiringPose
         npc.setSynchronizationEquipmentEnabled(true);
         npc.setSynchronizationOverlaysEnabled(true);
         npc.getInventory().setItemMapper(new TagRemovingMapper("PosePluginItem"));
-        Location l = to.clone();
-        l.setPitch(-90f);
-        npc.setLocationRotation(l);
+        npc.setRotation(-90, 0);
         npc.initiate();
         PosePluginAPI.getAPI().getPlayerHider().hide(getPlayer());
         PosePluginAPI.getAPI().getNameTagHider().hideTag(getPlayer());

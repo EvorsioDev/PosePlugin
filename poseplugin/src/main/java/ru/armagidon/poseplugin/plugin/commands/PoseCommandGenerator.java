@@ -45,7 +45,13 @@ public class PoseCommandGenerator
                         }
                     } else {
                         PosePlugin.PLAYERS_POSES.put(sender, poseType);
-                        IPluginPose pose  = PoseBuilder.builder(poseType).option(EnumPoseOption.HANDTYPE, handType).build(sender);
+                        PoseBuilder poseBuilder = PoseBuilder.builder(poseType);
+                        Arrays.stream(poseType.availableOptions()).forEach(option -> {
+                            Object value = PosePlugin.getInstance().getConfig().get((poseType.getName() + "." + option.mapper()).toLowerCase());
+                            if (value == null) value = option.defaultValue();
+                            poseBuilder.option((EnumPoseOption<? super Object>) option, value);
+                        });
+                        IPluginPose pose  = poseBuilder.option(EnumPoseOption.HANDTYPE, handType).build(sender);
                         player.changePose(pose);
                     }
                     return true;
