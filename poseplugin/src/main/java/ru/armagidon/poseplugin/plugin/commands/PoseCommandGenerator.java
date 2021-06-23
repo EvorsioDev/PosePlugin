@@ -35,6 +35,7 @@ public class PoseCommandGenerator
                     return true;
                 });
                 Arrays.stream(HandType.values()).forEach(handType -> builder.subCommand(handType.name().toLowerCase(), (sender, label, args) -> {
+                    if (!performChecks(poseType.getPoseClass(), sender)) return true;
                     PosePluginPlayer player = PosePluginAPI.getAPI().getPlayer(sender);
                     if (player.getPoseType().equals(poseType)) {
                         HandType currentHandType = player.getPose().getProperty(EnumPoseOption.HANDTYPE).getValue();
@@ -44,7 +45,13 @@ public class PoseCommandGenerator
                         }
                     } else {
                         PosePlugin.PLAYERS_POSES.put(sender, poseType);
-                        IPluginPose pose  = PoseBuilder.builder(poseType).option(EnumPoseOption.HANDTYPE, handType).build(sender);
+                        PoseBuilder poseBuilder = PoseBuilder.builder(poseType);
+                        Arrays.stream(poseType.availableOptions()).forEach(option -> {
+                            Object value = PosePlugin.getInstance().getConfig().get((poseType.getName() + "." + option.mapper()).toLowerCase());
+                            if (value == null) value = option.defaultValue();
+                            poseBuilder.option((EnumPoseOption<? super Object>) option, value);
+                        });
+                        IPluginPose pose  = poseBuilder.option(EnumPoseOption.HANDTYPE, handType).build(sender);
                         player.changePose(pose);
                     }
                     return true;

@@ -1,5 +1,10 @@
 package ru.armagidon.poseplugin.api.utils.nms.protocolized.npc;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.events.PacketListener;
 import com.comphenix.protocol.wrappers.*;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -23,6 +28,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static ru.armagidon.poseplugin.api.utils.nms.npc.FakePlayerUtils.setBit;
+import static ru.armagidon.poseplugin.api.utils.nms.protocolized.npc.MetadataEditorProtocolized.OVERLAYS;
 
 @ToolPackage(mcVersion = "protocolized")
 public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
@@ -41,6 +47,8 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
     private final WrapperPlayServerPlayerInfo addInfo;
     private final WrapperPlayServerRelEntityMoveLook movePacket;
     private WrapperPlayServerBlockChange fakeBedPacket;
+
+    private static Object packetListener; //PacketAdapter NoClassDefFoundError avoiding crutch
 
 
     public FakePlayerProtocolized(Player parent, Pose pose) {
@@ -78,7 +86,7 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
 
         metadataAccessor = new MetadataEditorProtocolized(this);
         npcSynchronizer = new NPCSynchronizerProtocolized(this);
-        inventory = new NPCInventoryProtocolized(this);
+        inventory = NPCInventoryProtocolized.createInventory(this);
 
         //Set metadata
         setMetadata();
@@ -90,7 +98,7 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
 
     private void setMetadata(){
         //Save current overlay bit mask
-        byte overlays = getDataWatcher().getByte(16);
+        byte overlays = getDataWatcher().getByte(OVERLAYS.getKey());
         //Set pose to the NPC
         metadataAccessor.setPose(pose);
         //Set current overlays to the NPC
@@ -154,9 +162,9 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
             }
         }
 
-        if(isSynchronizationEquipmentEnabled()) updateEquipment();
-        if(isSynchronizationOverlaysEnabled()) updateOverlays();
-        if(isHeadRotationEnabled()) updateHeadRotation();
+        if(isSynchronizationEquipmentEnabled()) npcSynchronizer.syncEquipment();
+        if(isSynchronizationOverlaysEnabled()) npcSynchronizer.syncOverlays();
+        if(isHeadRotationEnabled()) npcSynchronizer.syncHeadRotation();
 
         trackers.forEach(fakeBedPacket::sendPacket);
     }
@@ -174,7 +182,7 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
     public void spawnToPlayer(Player player) {
         spawner.sendPacket(player);
         fakeBedPacket.sendPacket(player);
-        inventory.showEquipment(player);
+        inventory.show(player);
         metadataAccessor.showPlayer(player);
         if(metadataAccessor.getPose().equals(Pose.SLEEPING))
             movePacket.sendPacket(player);
@@ -203,12 +211,30 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
 
     @Override
     protected void activateDeepDive() {
-
+        if (packetListener == null) {
+            packetListener = new PacketAdapter(PosePluginAPI.getAPI().getPlugin(), PacketType.Play.Client.USE_ENTITY) {
+                @Override
+                public void onPacketReceiving(PacketEvent event) {
+                    WrapperPlayClientUseEntity packet = new WrapperPlayClientUseEntity(event.getPacket());
+                    if (!FAKE_PLAYERS.containsKey(event.getPlayer())) return;
+                    if (!FAKE_PLAYERS.get(event.getPlayer()).isDeepDiveEnabled()) return;
+                    int id = packet.getTargetID();
+                    if (id == event.getPlayer().getEntityId())
+                        event.setCancelled(true);
+                }
+            };
+            ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener) packetListener);
+        }
+        WrapperPlayServerCamera camera = new WrapperPlayServerCamera();
+        camera.setCameraId(getId());
+        camera.sendPacket(getParent());
     }
 
     @Override
     protected void deactivateDeepDive() {
-
+        WrapperPlayServerCamera camera = new WrapperPlayServerCamera();
+        camera.setCameraId(getParent().getEntityId());
+        camera.sendPacket(getParent());
     }
 
     @Override
@@ -229,6 +255,8 @@ public class FakePlayerProtocolized extends FakePlayer<WrappedDataWatcher>
     public void setRotation(float pitch, float yaw) {
         this.movePacket.setPitch(pitch);
         this.movePacket.setYaw(yaw);
+        this.spawner.setYaw(yaw);
+        this.spawner.setPitch(pitch);
         this.position.setPitch(pitch);
         this.position.setYaw(yaw);
     }

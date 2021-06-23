@@ -18,14 +18,15 @@ public enum EnumPose {
             EnumPoseOption.SYNC_OVERLAYS,
             EnumPoseOption.VIEW_DISTANCE,
             EnumPoseOption.INVISIBLE,
-            EnumPoseOption.SWING_ANIMATION),
+            EnumPoseOption.SWING_ANIMATION,
+            EnumPoseOption.DEEP_DIVE),
     CRAWLING("crawl", CrawlPose.class),
-    WAVING("wave", ExperimentalHandPose.WavePose.class, true, EnumPoseOption.HANDTYPE),
-    POINTING("point", ExperimentalHandPose.PointPose.class, true, EnumPoseOption.HANDTYPE),
-    CLAPPING("clap", ExperimentalHandPose.ClapPose.class, true, EnumPoseOption.HANDTYPE),
-    HANDSHAKING("handshake", ExperimentalHandPose.HandShakePose.class, true, EnumPoseOption.HANDTYPE),
+    WAVING("wave", ExperimentalHandPose.WavePose.class, true, EnumPoseOption.HANDTYPE, EnumPoseOption.DEEP_DIVE),
+    POINTING("point", ExperimentalHandPose.PointPose.class, true, EnumPoseOption.HANDTYPE, EnumPoseOption.DEEP_DIVE),
+    CLAPPING("clap", ExperimentalHandPose.ClapPose.class, true, EnumPoseOption.HANDTYPE, EnumPoseOption.DEEP_DIVE),
+    HANDSHAKING("handshake", ExperimentalHandPose.HandShakePose.class, true, EnumPoseOption.HANDTYPE, EnumPoseOption.DEEP_DIVE),
     PRAYING("pray", PrayPose.class, true, EnumPoseOption.STEP),
-    SPINJITSU("spinjitsu", SpinJitsuPose.class, true);
+    SPINJITSU("spinjitsu", SpinJitsuPose.class, true, EnumPoseOption.DEEP_DIVE);
 
     @Getter private final String name;
     private final EnumPoseOption<?>[] enumPoseOptions;
