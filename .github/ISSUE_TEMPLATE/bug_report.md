@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Plugin version:**
-poseplugin-experimental-1.8-pre-3b1
+PosePlugin-4.0-Beta-1
 
 **Plugins list:**
  - WorldEdit
