@@ -26,6 +26,9 @@ If applicable, add screenshots to help explain your problem.
 **Plugin version:**
 PosePlugin-4.0-Beta-1
 
+**Server software**
+Example Paper-1.17 build 66 or other
+
 **Plugins list:**
  - WorldEdit
  - PermissionsEx
