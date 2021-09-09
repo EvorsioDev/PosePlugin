@@ -7,9 +7,8 @@
 
 <p align="left">PosePlugin - is powerful open-source plugin that can help you change your pose to whatever you want. <br> There are 8 different poses you're definitely gonna like: laying, sitting, crawling, waving, pointing, handshaking, clapping and praying.</p>
 
-<h3>✔️ Recommended use on <a href="https://github.com/PaperMC/Paper">Paper</a> or others <a href="https://github.com/Tuinity/Tuinity">Paper Forks</a>.</h3>
-Tested on: <a href="https://getbukkit.org/">Spigot</a>, <a href="https://github.com/PaperMC/Paper">Paper</a>, <a href="https://github.com/Tuinity/Tuinity">Tuinity</a>,
-<a href="https://github.com/pl3xgaming/Purpur">Purpur</a>, <a href="https://github.com/TECHNOVE/Airplane">Airplane</a>.
+<h3>✔️ Recommended use on <a href="https://github.com/PaperMC/Paper">Paper</a>.</h3>
+Tested on: <a href="https://getbukkit.org/">Spigot</a>, <a href="https://github.com/PaperMC/Paper">Paper</a>, <a href="https://github.com/pl3xgaming/Purpur">Purpur</a>, <a href="https://github.com/TECHNOVE/Airplane">Airplane</a>.
 
 <h3>⚠️ Pose /point has been working exclusively since version 1.17+</h3>
 
