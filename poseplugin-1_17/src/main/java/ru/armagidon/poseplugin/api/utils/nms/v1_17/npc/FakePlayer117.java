@@ -76,7 +76,7 @@ public class FakePlayer117 extends FakePlayer<SynchedEntityData>
     private final ClientboundPlayerInfoPacket removeNPCData;
     private ClientboundAddPlayerPacket spawner;
     private ClientboundMoveEntityPacket.PosRot movePacket;
-    private final ClientboundRemoveEntityPacket destroy;
+    private final ClientboundRemoveEntitiesPacket destroy;
 
     public FakePlayer117(Player parent, Pose pose) {
         super(parent, pose);
@@ -119,7 +119,7 @@ public class FakePlayer117 extends FakePlayer<SynchedEntityData>
 
         this.inventory = new NPCInventory117(this);
 
-        this.destroy = new ClientboundRemoveEntityPacket(fake.getId());
+        this.destroy = new ClientboundRemoveEntitiesPacket(fake.getId());
 
         //Create instance of move packet to pop up npc a little
         this.movePacket = new ClientboundMoveEntityPacket.PosRot(fake.getId(), (short) 0,(short)2,(short)0,(byte)0,(byte)0, true);

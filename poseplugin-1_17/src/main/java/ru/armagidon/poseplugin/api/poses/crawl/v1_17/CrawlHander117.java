@@ -4,7 +4,7 @@ package ru.armagidon.poseplugin.api.poses.crawl.v1_17;
 import lombok.SneakyThrows;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ClientboundAddMobPacket;
-import net.minecraft.network.protocol.game.ClientboundRemoveEntityPacket;
+import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -102,7 +102,7 @@ public class CrawlHander117 extends CrawlHandler
 
         @Override
         public void hide0() {
-            ClientboundRemoveEntityPacket destroy = new ClientboundRemoveEntityPacket(shulker.getId());
+            ClientboundRemoveEntitiesPacket destroy = new ClientboundRemoveEntitiesPacket(shulker.getId());
             FakePlayer117.sendPacket(player, destroy);
         }
 
